@@ -186,29 +186,29 @@ averageProductRating("eedfcf");
 // 4.
 console.log("ex. 4");
 const likeProduct = (userId, productId) => {
-    for (const product in products) {
+    // Iterate through products array
+    for (const product of products) {
         // Check the given product by their ID
-        if (products[product]._id === productId) {
-            console.log(`Product: ${products[product]._id}`);
-            if (products[product].likes.length === 0) {
-                products[product].likes.push(userId);
-                console.log(products[product].likes);
+        if (product._id === productId) {
+            console.log(`Product: ${product._id}`);
+            // Push userID to likes array if array length is 0
+            if (product.likes.length === 0) {
+                product.likes.push(userId);
+                console.log("Liked product!");
                 break;
             }
             // Iterate through likes in likes array
-            for (like in products[product].likes) {
+            for (like of product.likes) {
                 // If user already liked, splice out the like from likes array
-                if (products[product].likes[like] === userId) {
+                if (product.likes[like] === userId) {
                     console.log("User already liked, removing like.");
-                    products[product].likes.splice(
-                        products[product].likes.indexOf(userId),
-                        1
-                    );
+                    product.likes.splice(product.likes.indexOf(userId), 1);
                 }
                 // Else push the userId to likes array
                 else {
-                    products[product].likes.push(userId);
+                    product.likes.push(userId);
                     console.log("Liked product!");
+                    break;
                 }
             }
         }
@@ -216,4 +216,4 @@ const likeProduct = (userId, productId) => {
     console.table(products);
 };
 
-likeProduct("zwf8md", "aegfal");
+likeProduct("zwf8md", "eedfcf");
